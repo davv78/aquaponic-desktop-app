@@ -1,0 +1,30 @@
+<html>
+<body>
+
+<?php
+
+$dbname = 'aquaponic';
+$dbuser = 'root';  
+$dbpass = ''; 
+$dbhost = 'localhost:3306'; 
+
+$connect = @mysqli_connect('localhost:3306',$dbuser,$dbpass,$dbname);
+
+if(!$connect){
+	echo "Error: " . mysqli_connect_error();
+	exit();
+}
+
+echo "Connection Success!<br><br>";
+
+$suhu = $_GET["suhu"];
+$ph   = $_GET["ph"];
+
+$query = "INSERT INTO histori (suhu, ph) VALUES ('$suhu', '$ph')";
+$result = mysqli_query($connect,$query);
+
+echo "Insertion Success!<br>";
+
+?>
+</body>
+</html>
